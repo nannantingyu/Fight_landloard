@@ -154,6 +154,7 @@ class Fight_loardlan:
         turn_card = self.cards_all[self.turn]
         cs = card.split('_')
 
+        print cs
         if cs[0] + '_' == self.BIG_BOMB:
             if 'f' in turn_card and 'M' in turn_card:
                 turn_card.remove('F')
@@ -187,7 +188,7 @@ class Fight_loardlan:
                     turn_card.remove(cs[i])
             for i in range(len(cs) / 2 + 1, len(cs)):
                 turn_card.remove(cs[i])
-        elif cs[0] + '_' == self.THREE_THREE:
+        elif cs[0] + '_' == self.THREE_THREE or cs[0] + '_' == self.THREE:
             for i in range(1, len(cs)):
                 if turn_card.count(cs[i]) < 3:
                     return False
@@ -353,7 +354,7 @@ class Fight_loardlan:
             print_encoding("上家出牌：" + self.turn_name[self.master] + ": " + self.last_card())
 
         print "--------------------------------------------------------------------------------------------"
-        card_out = raw_input(en_coding('%s出牌' % self.turn_name[self.turn])).replace("10", "L").replace("2", "T").strip()
+        card_out = raw_input(en_coding('%s出牌' % self.turn_name[self.turn])).replace("10", "L").replace("2", "T").strip().upper()
         if not card_out == '0':
             if len(self.card_pat.findall(card_out)) > 0:
                 print_encoding('请出正确的牌！')
